@@ -13,7 +13,7 @@ static void lept_parse_whitespace(lept_context *c)
     const char *p = c->json;
     while(*p == ' ' || *p == '\t' || *p == '\n' || *p == '\r')
         p++;
-    c-json = p;
+    c->json = p;
 }
 
 static int lept_parse_null(lept_context *c, lept_value *v)
