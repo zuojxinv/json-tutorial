@@ -40,7 +40,7 @@ static int lept_parse_number(lept_context *c, lept_value *v)
     if( *p == '0') p++;
     else{
         if(!ISDIGIT1TO9(*p)) return LEPT_PARSE_INVALID_VALUE;
-        for( p++; ISDIGIT(*p); p++)
+        for( p++; ISDIGIT(*p); p++);
     }
     if(*p =='.')
     {
