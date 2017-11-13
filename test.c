@@ -35,7 +35,7 @@ static int test_pass = 0;
         lept_value v;\
         EXPECT_EQ_INT(LEPT_PARSE_OK, lept_parse(&v, json)); \
         EXPECT_EQ_INT(LEPT_NUMBER , lept_get_type(&v)); \
-        EXPECT_EQ_DOUBLE(expect, lept_get_number(&v));
+        EXPECT_EQ_DOUBLE(expect, lept_get_number(&v)); \
     }while(0)
     
 static void test_parse_expect_value()
@@ -91,7 +91,8 @@ static void test_parse_number()
     TEST_NUMBER(0.0, "1e-10000"); /* must underflow */
 }
 
-static void test_parse_invalid_value() {
+static void test_parse_invalid_value() 
+{
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "nul");
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "?");
 
@@ -106,7 +107,8 @@ static void test_parse_invalid_value() {
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "nan");
 }
 
-static void test_parse_root_not_singular() {
+static void test_parse_root_not_singular() 
+{
     TEST_ERROR(LEPT_PARSE_ROOT_NOT_SINGULAR, "null x");
 
     /* invalid number */
