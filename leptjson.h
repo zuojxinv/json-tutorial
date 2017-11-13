@@ -16,7 +16,7 @@ enum {
     LEPT_PARSE_EXPECT_VALUE,    /*只有空白 */
     LEPT_PARSE_INVALID_VALUE,   /*无效 */
     LEPT_PARSE_ROOT_NOT_SINGULAR,   /*其他多余字符 */
-    LEPT_PARSE_NUMBER_TOO_BIG, /* 数字过大*/
+    LEPT_PARSE_NUMBER_TOO_BIG /* 数字过大*/
 };
 
 typedef struct{

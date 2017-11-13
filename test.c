@@ -26,14 +26,13 @@ static int test_pass = 0;
     do{\
         lept_value v; \
         v.type = LEPT_FALSE; \
-        EXPECT_EQ_INT(perror, lept_parse(&v, json)); \
+        EXPECT_EQ_INT(error, lept_parse(&v, json)); \
         EXPECT_EQ_INT(LEPT_NULL , lept_get_type(&v)); \
     }while(0)
 
-#define TEST_NUMBER(perror, json, geterror) \
+#define TEST_NUMBER(expect, json) \
     do{\
         lept_value v;\
-        v.type = LEPT_FALSE;
         EXPECT_EQ_INT(LEPT_PARSE_OK, lept_parse(&v, json)); \
         EXPECT_EQ_INT(LEPT_NUMBER , lept_get_type(&v)); \
         EXPECT_EQ_DOUBLE(expect, lept_get_number(&v));
