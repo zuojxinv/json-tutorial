@@ -23,7 +23,7 @@ typedef struct{
 } lept_value;
 
 /*字符串 解析成json格式*/
-int lept_parse(lept_value v, const char *json);
+int lept_parse(lept_value *v, const char *json);
 
 lept_type lept_get_type(const lept_value *v);
 

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 typedef struct {
-    char *json;
+    const char *json;
 } lept_context;
 
 #define EXPECT(c, ch) do{ assert( *c->json == (ch)); c->json++; }while(0)
@@ -27,7 +27,7 @@ static int lept_parse_null(lept_context *c, lept_value *v)
     return LEPT_PARSE_OK;
 }
 
-static int lept_parse_false()
+static int lept_parse_false(lept_context *c, lept_value *v)
 {
     EXPECT(c, 'f');
     if( c->json[0] != 'a' || c->json[1] != 'l' || c->json[2] != 's' || c->json[3] != 'e')
@@ -38,7 +38,7 @@ static int lept_parse_false()
     return LEPT_PARSE_OK;
 }
 
-static int lept_parse_true()
+static int lept_parse_true(lept_context *c, lept_value *v)
 {
     EXPECT(c, 't');
     if( c->json[0] != 'r' || c->json[1] != 'u' || c->json[2] != 'e')
@@ -59,7 +59,7 @@ static int lept_parse_value(lept_value *v, lept_context *c)
             return lept_parse_false(c, v);
         case 't':
             return lept_parse_true(c, v);
-        case '\0'
+        case '\0':
             return LEPT_PARSE_EXPECT_VALUE;
         default:
             return LEPT_PARSE_INVALID_VALUE;
