@@ -35,7 +35,7 @@ static int lept_parse_literal(lept_context *c, lept_value *v, const char *str, l
 
 static int lept_parse_number(lept_context *c, lept_value *v)
 {
-    char *p = c->json;
+    const char *p = c->json;
     if( *p == '-') p++;
     if( *p == '0') p++;
     else{
@@ -63,7 +63,7 @@ static int lept_parse_number(lept_context *c, lept_value *v)
     errno = 0;
     if(errno == ERANGE && (v->n == HUGE_VAL || v->n == -HUGE_VAL))
         return LEPT_PARSE_NUMBER_TOO_BIG;
-        
+
     v->n = strtod(c->json, NULL);
     c->json = p;
     v->type = LEPT_NUMBER;
