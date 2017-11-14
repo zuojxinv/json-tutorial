@@ -1,5 +1,6 @@
 #ifndef LEPTJSON_H__
 #define LEPTJSON_H__
+#include <stddef.h> /* size_t */
 
 typedef enum {
     LEPT_NULL, 
