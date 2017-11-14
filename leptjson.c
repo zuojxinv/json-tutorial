@@ -9,8 +9,12 @@
 #ifndef LEPT_PARSE_STACK_INIT_SIZE
 #define LEPT_PARSE_STACK_INIT_SIZE 256
 #endif
-                        /*(char *)将void*转换成char指针，然后再加个*获取第一个字符 */
-#define PUTC(c, ch) do{ *(char *)lept_context_push((c), (sizeof(char))) == (ch); }while(0)
+
+typedef struct {
+    const char *json;
+    char *stack;
+    size_t size, top;
+} lept_context;
 
 static void* lept_context_push(lept_context *c, size_t size)
 {
@@ -31,12 +35,8 @@ static void* lept_context_pop(lept_context *c, size_t size)
     c->top -= size;
     return c->stack + c->top;
 }
-
-typedef struct {
-    const char *json;
-    char *stack;
-    size_t size, top;
-} lept_context;
+                        /*(char *)将void*转换成char指针，然后再加个*获取第一个字符 */
+#define PUTC(c, ch) do{ *(char *)lept_context_push((c), (sizeof(char))) == (ch); }while(0)
 
 #define EXPECT(c, ch) do{ assert( *c->json == (ch)); c->json++; }while(0)
 #define ISDIGIT1TO9(ch) ((ch)>='1' && (ch)<='9')
