@@ -68,7 +68,7 @@ static int lept_parse_string(lept_context* c, lept_value* v)
 {
     size_t head = c->top, len;
     EXPECT(c, '\"');
-    char *p = c->json;
+    const char *p = c->json;
     char ch;
     for(;;)
     {
