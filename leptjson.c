@@ -112,7 +112,6 @@ lept_type lept_get_type(const lept_value *v)
 
 double lept_get_number(const lept_value *v)
 {
-    assert(v != NULL);
-    assert(v->type != LEPT_NUMBER);
+    assert(v != NULL && v->type == LEPT_NUMBER);
     return v->n;
 }
