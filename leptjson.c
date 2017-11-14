@@ -36,7 +36,7 @@ static void* lept_context_pop(lept_context *c, size_t size)
     return c->stack + c->top;
 }
                         /*(char *)将void*转换成char指针，然后再加个*获取第一个字符 */
-#define PUTC(c, ch) do{ *(char *)lept_context_push((c), (sizeof(char))) == (ch); }while(0)
+#define PUTC(c, ch) do{ *(char *)lept_context_push(c, (sizeof(char)) ) == (ch); }while(0)
 
 #define EXPECT(c, ch) do{ assert( *c->json == (ch)); c->json++; }while(0)
 #define ISDIGIT1TO9(ch) ((ch)>='1' && (ch)<='9')
@@ -117,8 +117,8 @@ static int lept_parse_number(lept_context *c, lept_value *v)
     // if(*c->json == *end)     /* *c->json=a , *end=1  ok;  *c->json=a,*end=a fail */
     //     return LEPT_PARSE_INVALID_VALUE;
     errno = 0;
-    v->n = strtod(c->json, NULL);
-    if(errno == ERANGE && (v->n == HUGE_VAL || v->n == -HUGE_VAL))
+    v->u.n = strtod(c->json, NULL);
+    if(errno == ERANGE && (v->u.n == HUGE_VAL || v->u.n == -HUGE_VAL))
         return LEPT_PARSE_NUMBER_TOO_BIG;
 
     c->json = p;
@@ -190,7 +190,7 @@ lept_type lept_get_type(const lept_value *v)
 int lept_get_boolean(const lept_value *v)
 {
     assert(v != NULL);
-    assert(v != LEPT_FALSE || v!= LEPT_TRUE);
+    assert(v->type != LEPT_FALSE || v->type!= LEPT_TRUE);
     return v->type == LEPT_TRUE;
 }
 
