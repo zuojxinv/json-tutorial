@@ -31,6 +31,8 @@ typedef struct{
     lept_type type;
 } lept_value;
 
+void lept_free(lept_value *v);
+
 /*字符串 解析成json格式*/
 int lept_parse(lept_value *v, const char *json);
 
