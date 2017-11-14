@@ -48,6 +48,6 @@ size_t lept_get_string_len(const lept_value *v);
 void lept_set_string(lept_value *v, const char *s, size_t len);
 
 #define lept_set_null(v) lept_free(v)
-
+#define lept_init(v) do { (v)->type = LEPT_NULL; } while(0)
 
 #endif

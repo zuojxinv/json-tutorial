@@ -41,7 +41,6 @@ static void* lept_context_pop(lept_context *c, size_t size)
 #define EXPECT(c, ch) do{ assert( *c->json == (ch)); c->json++; }while(0)
 #define ISDIGIT1TO9(ch) ((ch)>='1' && (ch)<='9')
 #define ISDIGIT(ch) ((ch)>='0' && (ch)<='9')
-#define lept_init(v) do{ (v)->type = LEPT_NULL; } while(0)
 
 static void lept_parse_whitespace(lept_context *c)
 {
@@ -53,6 +52,7 @@ static void lept_parse_whitespace(lept_context *c)
 
 static int lept_parse_literal(lept_context *c, lept_value *v, const char *str, lept_type t)
 {
+
     size_t i;
     EXPECT(c, str[0]);
     for(i = 0; str[i+1]; i++)
